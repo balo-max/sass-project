@@ -1,5 +1,5 @@
 /***
-    The new CSS reset - version 1.11 (last updated 20.9.2023)
+    The new CSS reset - version 1.11.2 (last updated 15.11.2023)
     GitHub page: https://github.com/elad2412/the-new-css-reset
 ***/
 
@@ -36,7 +36,8 @@ button {
 /* Remove list styles (bullets/numbers) */
 ol,
 ul,
-menu {
+menu,
+summary {
   list-style: none;
 }
 
@@ -79,21 +80,16 @@ meter {
   color: unset;
 }
 
-/* remove default dot (•) sign */
-::marker {
-  content: initial;
-}
-
 /* fix the feature of 'hidden' attribute.
-   display:revert; revert to element instead of attribute */
+ display:revert; revert to element instead of attribute */
 :where([hidden]) {
   display: none;
 }
 
 /* revert for bug in Chromium browsers
-   - fix for the content editable attribute will work properly.
-   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
-:where([contenteditable]:not([contenteditable="false"])) {
+ - fix for the content editable attribute will work properly.
+ - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable='false'])) {
   -moz-user-modify: read-write;
   -webkit-user-modify: read-write;
   overflow-wrap: break-word;
@@ -102,7 +98,7 @@ meter {
 }
 
 /* apply back the draggable feature - exist only in Chromium and Safari */
-:where([draggable="true"]) {
+:where([draggable='true']) {
   -webkit-user-drag: element;
 }
 
@@ -110,4 +106,9 @@ meter {
 :where(dialog:modal) {
   all: revert;
   box-sizing: border-box;
+}
+
+/* Remove details summary webkit styles */
+::-webkit-details-marker {
+  display: none;
 }
